@@ -1,0 +1,99 @@
+﻿@model AppMVC_FINAL.Entity.ComprobanteDetalle
+
+@{
+    ViewBag.Title = "Details";
+    Layout = null;
+}
+
+<div>
+    <h4 class="text text-primary"><i class="glyphicon glyphicon-list"></i> Detalle de la factura seleccionada</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Cliente)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Cliente)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NombreProducto)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NombreProducto)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Cantidad)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Cantidad)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PrecioUitario)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PrecioUitario)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Monto)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Monto)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Igv)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Igv)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Total)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Total)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FechaRegistro)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FechaRegistro)
+        </dd>
+
+
+
+
+
+    </dl>
+</div>
+<div class="row">
+    @*<div class="col-md-4">
+        <br />
+        <input id="Eliminar" type="submit" value="Emitir Factura" class="btn btn-danger btn-block">
+    </div>*@
+    <div class="col-md-4">
+        <br />
+        <a href="@Url.Action("Index", "Facturacion")" class="btn btn-info"><span class="glyphicon glyphicon-arrow-left"></span> Regresar</a>
+    </div>
+</div>
+<p>
+    @*@Html.ActionLink("Edit", "Edit", new { id = Model.ComprobanteId }) |
+    @Html.ActionLink("Back to List", "Index")*@
+    @*<button class="btn btn-warning btn-Edit" data-codigo="@Model.ComprobanteId" data-toggle="modal" data-target="#myModal"><i class="glyphicon glyphicon-pencil"></i> Editar</button> |
+    <a href="@Url.Action("Index", "Facturacion")" class="btn btn-info"><span class="glyphicon glyphicon-arrow-left"></span> Regresar</a>*@
+</p>

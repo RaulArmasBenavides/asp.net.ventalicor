@@ -1,0 +1,81 @@
+﻿@model AppMVC_FINAL.Entity.Usuarios
+@{
+    ViewBag.Title = "Index";
+    Layout = null;
+
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Login</title>
+    <link href="~/Content/Style.css" rel="stylesheet" />
+    <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <script src="~/Scripts/modernizr-2.6.2.js"></script>
+    <style>
+        #login-div {
+            position: absolute;
+            left: 40%;
+            top: 20%;
+            border: 1px solid #ccc;
+            padding: 10px 10px;
+        }
+
+        .field-validation-error {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <div id="login-div">
+        @using (Html.BeginForm("Autenticar", "Login", FormMethod.Post))
+        {
+
+
+            <div class="row">
+                <div class="col-md-12">
+                    <!-- Login -->
+                    <div class="social-buttons">
+                        <div class="iconSpecial"><i class="glyphicon glyphicon-user"></i>Login</div>
+                    </div>
+                    <form class="form" role="form" method="post" action="login" accept-charset="UTF-8" id="login-nav">
+                        <div class="form-group">
+                            <label class="sr-only" for="exampleInputEmail2">login</label>
+                            @*<input type="email" class="form-control" id="exampleInputEmail2" placeholder="Ingresar Usuario" required>*@
+                            @Html.EditorFor(model => model.Usuario, new { htmlAttributes = new { @class = "form-control", placeholder = "Ingresar Usuario" } })
+                            @Html.ValidationMessageFor(model => model.Usuario, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group">
+                            <label class="sr-only" for="exampleInputPassword2">Senha</label>
+                            @*<input type="password" class="form-control" id="exampleInputPassword2" placeholder="Ingresar Password" required>*@
+                            @Html.EditorFor(model => model.Clave, new { htmlAttributes = new { @class = "form-control", placeholder = "Ingresar Password" } })
+                            @Html.ValidationMessageFor(model => model.Clave, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group">
+                            <label class="field-validation-error">@Html.DisplayFor(model => model.LoginErrorMessage)</label>
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary btn-block">Ingresar</button>
+
+                        </div>
+                        <div class="checkbox text-dark">
+                            <label>
+                                <input type="checkbox"> Recordar?
+                            </label>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        }
+
+    </div>
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+</body>
+</html>
+
+

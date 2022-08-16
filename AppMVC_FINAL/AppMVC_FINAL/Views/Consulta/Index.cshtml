@@ -1,0 +1,114 @@
+﻿@model IEnumerable<AppMVC_FINAL.Entity.ComprobanteDetalle>
+
+@{
+    ViewBag.Title = "Index";
+    if (Session["userID"] == null)
+    {
+        Response.Redirect("~/Login/Index");
+    }
+}
+
+<h2 class="text-primary">Reporte de las ventas por fecha</h2>
+<link href="~/Content/dataTables.bootstrap.min.css" rel="stylesheet" />
+<script type='text/javascript' src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script src="~/Scripts/jsEventos.js"></script>
+<script src="~/Scripts/jquery.dataTables.min.js"></script>
+
+<script>
+  $( function() {
+      $("#fIni").datepicker();
+  } );
+</script>
+
+<script type="text/javascript">
+    $(function () {
+        $("#fIni").datepicker();
+        $("#fFin").datepicker();
+    });
+</script>  
+<style>
+    th {
+    background-color:#428BCA;
+    color: white;
+} 
+</style>
+<div class="row well">
+
+        <div class="col-sm-4">
+            @Html.Label("Fecha Inicio", htmlAttributes: new { @class = "control-label" })
+                <input type="text" id="fIni" value="2017/08/01" class="form-control datepicker" />
+        </div>
+        <div  class="col-sm-4">
+            @Html.Label("Fecha Fin", htmlAttributes: new { @class = "control-label" })
+                <input type="text" id="fFin" value="2017/08/30" class="form-control datepicker" />
+
+        </div>
+
+    <div class="col-sm-4 pull-left">
+        <input type="button" id="btnBuscar" class="btn btn-primary btbBuscarFecha" value="Buscar" style="margin-top: 15px;"/>
+    </div>
+</div>
+<br />
+<table class="table table-bordered table-responsive">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Cliente)
+        </th>
+        <th>
+            Nombre Producto
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Cantidad)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PrecioUitario)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Monto)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Igv)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Total)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FechaRegistro)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Cliente)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NombreProducto)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Cantidad)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PrecioUitario)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Monto)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Igv)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Total)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FechaRegistro)
+        </td>
+
+        <td>
+
+        </td>
+    </tr>
+}
+
+</table>

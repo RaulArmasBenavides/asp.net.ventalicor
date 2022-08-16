@@ -1,0 +1,96 @@
+﻿@model AppMVC_FINAL.Entity.ComprobanteDetalle
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = null;
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+    @*<div class="form-horizontal">*@
+        <h4 class="text text-warning"><i class="glyphicon glyphicon-edit"></i> Edición de la factura seleccionada</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.Id)
+
+    <div class="row">
+        <div class="col-md-10">
+            @Html.Label("Codigo Factura", htmlAttributes: new { @class = "control-label" })
+            @Html.EditorFor(model => model.ComprobanteId, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.ComprobanteId, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="row well">       
+        <div class="col-md-8">
+            @Html.LabelFor(model => model.Cliente, htmlAttributes: new { @class = "control-label" })
+            @Html.TextBoxFor(model => model.Cliente, new { htmlAttributes = new { @class = "form-control", style = "max-width: 100%;" } })
+            @Html.ValidationMessageFor(model => model.Cliente, "", new { @class = "text-danger" })
+        </div>
+        <div class="col-md-4">
+            @Html.Label("DNI / RUC: ", htmlAttributes: new { @class = "control-label" })
+            <input type="text" value="" class="form-control" style="max-width: 100%;" />
+            <br />
+        </div>
+        <div class="col-md-12">
+            @Html.Label("Dirección: ", htmlAttributes: new { @class = "control-label" })
+            <input type="text" value="" class="form-control" style="max-width: 100%;" />
+        </div>
+    </div>
+    <div class="row panel panel-body">
+        <div class="col-md-2">
+            @Html.LabelFor(model => model.Cantidad, htmlAttributes: new { @class = "control-label" })
+            @Html.EditorFor(model => model.Cantidad, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Cantidad, "", new { @class = "text-danger" })
+        </div>
+        <div class="col-md-6">
+            @Html.LabelFor(model => model.ProductoId, htmlAttributes: new { @class = "control-label" })
+            @Html.EditorFor(model => model.ProductoId, new { htmlAttributes = new { @class = "form-control", style = "max-width: 100%;" } })
+            @Html.ValidationMessageFor(model => model.ProductoId, "", new { @class = "text-danger" })
+        </div>
+        <div class="col-md-2">
+            @Html.LabelFor(model => model.PrecioUitario, htmlAttributes: new { @class = "control-label" })
+            @Html.EditorFor(model => model.PrecioUitario, new { htmlAttributes = new { @class = "form-control", onkeyup = "calcular()" } })
+            @Html.ValidationMessageFor(model => model.PrecioUitario, "", new { @class = "text-danger" })
+        </div>
+        <div class="col-md-2">
+            @Html.LabelFor(model => model.Monto, htmlAttributes: new { @class = "control-label" })
+            @Html.EditorFor(model => model.Monto, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Monto, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="col-md-4">
+        </div>
+        <div class="col-md-4">
+            @Html.Label("IGV 18%", htmlAttributes: new { @class = "control-label" })
+            @Html.EditorFor(model => model.Igv, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Igv, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="col-md-4">
+            @Html.LabelFor(model => model.Total, htmlAttributes: new { @class = "control-label" })
+            @Html.EditorFor(model => model.Total, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Total, "", new { @class = "text-danger" })
+        </div>
+        <br />
+    </div>
+
+    <div class="row">
+        <div class="col-md-4">
+            <br />
+            <input id="Actualizar" type="submit" value="Actualizar" class="btn btn-success btn-block" />
+        </div>
+        <div class="col-md-4">
+            <br />
+            <a href="@Url.Action("Index", "Facturacion")" class="btn btn-info"><span class="glyphicon glyphicon-arrow-left"></span> Regresar</a>
+        </div>
+    </div>
+}
+
+<div>
+</div>
+
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>

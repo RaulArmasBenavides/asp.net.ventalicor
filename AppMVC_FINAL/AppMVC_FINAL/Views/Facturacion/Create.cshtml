@@ -1,0 +1,102 @@
+﻿@model AppMVC_FINAL.Entity.ComprobanteDetalle
+
+@{
+    ViewBag.Title = "Create";
+    Layout = null;
+}
+
+<script>
+    $('#ProductoId').addClass('form-control')
+</script>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+    <div class="row well">
+        <div class="col-md-8">
+            @Html.LabelFor(model => model.Cliente, htmlAttributes: new { @class = "control-label" })
+            @Html.EditorFor(model => model.Cliente, new { htmlAttributes = new { @class = "form-control", style = "max-width: 100%;" } })
+            @Html.ValidationMessageFor(model => model.Cliente, "", new { @class = "text-danger" })
+        </div>
+        <div class="col-md-4">
+            @Html.Label("DNI / RUC: ", htmlAttributes: new { @class = "control-label" })
+            <input type="text" value="" class="form-control" style="max-width: 100%;" />
+            <br />
+        </div>
+        <div class="col-md-12">
+            @Html.Label("Dirección: ", htmlAttributes: new { @class = "control-label" })
+            <input type="text" value="" class="form-control" style="max-width: 100%;" />
+        </div>
+    </div>
+    <div class="row panel panel-body">
+        <div class="col-md-2">
+            @Html.LabelFor(model => model.Cantidad, htmlAttributes: new { @class = "control-label" })
+            @Html.EditorFor(model => model.Cantidad, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Cantidad, "", new { @class = "text-danger" })
+        </div>
+        <div class="col-md-6">
+            @Html.LabelFor(model => model.ProductoId, htmlAttributes: new { @class = "control-label" })
+            @Html.DropDownListFor(model => model.ProductoId,
+         new[]{
+                    new SelectListItem{ Value = "1", Text = "Cerveza Pilsen Callao" },
+                    new SelectListItem{ Value = "2", Text = "Cerveza Pilsen Callao" },
+                    new SelectListItem{ Value = "3", Text = "Vino Tabernero" },
+                    new SelectListItem{ Value = "4", Text = "Vino Borgoña" },
+                    new SelectListItem{ Value = "5", Text = "Ron Cartavio" },
+                    new SelectListItem{ Value = "6", Text = "Vino Tabernero" },
+                    new SelectListItem{ Value = "7", Text = "Wisky Etiqueta Azul" },
+                    new SelectListItem{ Value = "8", Text = "Wisky Etiqueta Negra" },
+                    new SelectListItem{ Value = "9", Text = "Pisco Buenazo" },
+                    new SelectListItem{ Value = "10", Text = "Pack Cerveza Cristal Lata" }
+                },
+                "SELECCIONE", new { htmlAttributes = new { @class = "form-control", style = "max-width: 100%;" } })
+
+            @Html.ValidationMessageFor(model => model.ProductoId, "", new { @class = "text-danger" })
+        </div>
+        <div class="col-md-2">
+            @Html.LabelFor(model => model.PrecioUitario, htmlAttributes: new { @class = "control-label" })
+            @Html.EditorFor(model => model.PrecioUitario, new { htmlAttributes = new { @class = "form-control", onkeyup = "calcular()" } })
+            @Html.ValidationMessageFor(model => model.PrecioUitario, "", new { @class = "text-danger" })
+        </div>
+        <div class="col-md-2">
+            @Html.LabelFor(model => model.Monto, htmlAttributes: new { @class = "control-label" })
+            @Html.EditorFor(model => model.Monto, new { htmlAttributes = new { @class = "form-control", } })
+            @Html.ValidationMessageFor(model => model.Monto, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="col-md-4">
+        </div>
+        <div class="col-md-4">
+            @Html.Label("IGV 18%", htmlAttributes: new { @class = "control-label" })
+            @Html.EditorFor(model => model.Igv, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Igv, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="col-md-4">
+            @Html.LabelFor(model => model.Total, htmlAttributes: new { @class = "control-label" })
+            @Html.EditorFor(model => model.Total, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Total, "", new { @class = "text-danger" })
+        </div>
+        <br />
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <br />
+            <input id="Guardar" type="submit" value="Emitir Factura" class="btn btn-success btn-block">
+        </div>
+        <div class="col-md-4">
+            <br />
+            <a href="@Url.Action("Index", "Facturacion")" class="btn btn-info"><span class="glyphicon glyphicon-arrow-left"></span> Regresar</a>
+        </div>
+    </div>
+}
+
+<div>
+</div>
+
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
